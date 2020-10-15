@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "623688795864",
+    "firebase_url": "https://info-edomex.firebaseio.com",
+    "project_id": "info-edomex",
+    "storage_bucket": "info-edomex.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:623688795864:android:c3243e9aaf58f5eeb439ad",
+        "android_client_info": {
+          "package_name": "tec.aldoguillermo.infoedomex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "623688795864-i1gmustia0gjffth7ad9l27v1sakvi9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCy2QnD5qxegvLqIN4QHShVgtdTLKstJ08"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "623688795864-i1gmustia0gjffth7ad9l27v1sakvi9h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
