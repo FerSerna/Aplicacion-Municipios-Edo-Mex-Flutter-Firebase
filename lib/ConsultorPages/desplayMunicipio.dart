@@ -186,8 +186,8 @@ class _DesplayMunicipio extends State<DesplayMunicipios> {
               children: [
                 IconButton(onPressed:(){
                   print('Poblacion');
-                  masPoblados.contains("0") ? descripcion="No hay sobrepoblacion \n\n  Habitantes : " 
-                                            : descripcion="Hay sobrepoblacion \n\n  Habitantes: ";
+                  masPoblados.contains("0") ? descripcion="No hay sobrepoblacion \n\n " 
+                                            : descripcion="Hay sobrepoblacion \n\n " + masPoblados;
                   Alert(context: context, 
                     title: "Poblacion de " + municipio,
                     desc: descripcion,
@@ -207,7 +207,7 @@ class _DesplayMunicipio extends State<DesplayMunicipios> {
                 IconButton(onPressed:(){
                   print('Rios');
                   cuerposAgua.contains("0") ? descripcion="Este municipio no contiene cuerpos de agua registrados" 
-                                            : descripcion="Este municipio tiene los siguientes cuerpos de agua registrados: \n \n ";
+                                            : descripcion="Este municipio tiene los siguientes cuerpos de agua registrados: \n \n " + cuerposAgua ;
                   Alert(context: context, 
                     title: "Cuerpos de agua en " + municipio,
                     desc: descripcion,
@@ -218,7 +218,7 @@ class _DesplayMunicipio extends State<DesplayMunicipios> {
                 IconButton(onPressed:(){
                   print('Nivel de Industrializacion');
                   masIndustralizados.contains("0") ? descripcion="Este municipio no cuenta con gran desarrollo industrial" 
-                                            : descripcion="Este municipio posee un gran desarrollo industrial: ";
+                                            : descripcion="Este municipio posee un gran desarrollo industrial: \n \n" + masIndustralizados;
                   Alert(context: context, 
                     title: "Industrialización en " + municipio,
                     desc: descripcion,

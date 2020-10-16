@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:infoedomex/ConsultorPages/riesgosdesplay/desplayInundaciones.dart';
 
 class SearchRiesgos extends StatefulWidget {
   @override
@@ -31,8 +32,9 @@ class _SearchRiesgos extends State<SearchRiesgos> {
                       color: Colors.amber,
                       minWidth: 350,
                       onPressed: () {
-                        print("Buscar por inundaciones");
-                        
+                        print("Buscar por inundaciones"); 
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DesplayInundaciones("Inundaciones"),));
                       },
                     ),
                   ),
@@ -46,6 +48,8 @@ class _SearchRiesgos extends State<SearchRiesgos> {
                       minWidth: 350,
                       onPressed: () {
                         print("Buscar por Incendios");
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DesplayInundaciones("Incendios"),));
 
                       },
                     ),
@@ -60,6 +64,8 @@ class _SearchRiesgos extends State<SearchRiesgos> {
                       minWidth: 350,
                       onPressed: () {
                         print("Buscar por Deslaves");
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DesplayInundaciones("Deslaves"),));
 
                       },
                     ),
@@ -74,6 +80,8 @@ class _SearchRiesgos extends State<SearchRiesgos> {
                       minWidth: 350,
                       onPressed: () {
                         print("Buscar por Zonas Sismica");
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DesplayInundaciones("Zona Sismica"),));
 
                       },
                     ),
@@ -88,6 +96,8 @@ class _SearchRiesgos extends State<SearchRiesgos> {
                       minWidth: 350,
                       onPressed: () {
                         print("Buscar por Zonas Volcanicas");
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DesplayInundaciones("Zona Volcanica"),));
 
                       },
                     ),
@@ -102,6 +112,8 @@ class _SearchRiesgos extends State<SearchRiesgos> {
                       minWidth: 350,
                       onPressed: () {
                         print("Buscar por Derrumbes");
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DesplayInundaciones("Derrumbes"),));
                         
                       },
                     ),
