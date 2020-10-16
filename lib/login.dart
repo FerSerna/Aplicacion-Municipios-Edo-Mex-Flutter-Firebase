@@ -38,12 +38,14 @@ class _LoginPageState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
+      appBar: AppBar(title: Text('Informacion EDOMEX')),
       body: Padding(
         padding: const EdgeInsets.all(22.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image(image: AssetImage('assets/edomex.png')),
+            SizedBox(height: 80),
             Text("Inicia Sesión", style: Theme.of(context).textTheme.headline5),
             SizedBox(height: 30),
             TextField(
