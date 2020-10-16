@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:infoedomex/ConsultorPages/riesgosdesplay/desplayIncendios.dart';
 import 'package:infoedomex/ConsultorPages/riesgosdesplay/desplayInundaciones.dart';
+import 'package:infoedomex/ConsultorPages/riesgosdesplay/desplaySismos.dart';
 
 class SearchRiesgos extends StatefulWidget {
   @override
@@ -49,7 +51,7 @@ class _SearchRiesgos extends State<SearchRiesgos> {
                       onPressed: () {
                         print("Buscar por Incendios");
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => DesplayInundaciones("Incendios"),));
+                          builder: (context) => DesplayIncendios("Incendios"),));
 
                       },
                     ),
@@ -81,7 +83,7 @@ class _SearchRiesgos extends State<SearchRiesgos> {
                       onPressed: () {
                         print("Buscar por Zonas Sismica");
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => DesplayInundaciones("Zona Sismica"),));
+                          builder: (context) => DesplaySismos("Sismos"),));
 
                       },
                     ),

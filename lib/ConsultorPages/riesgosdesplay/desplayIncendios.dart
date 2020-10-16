@@ -1,25 +1,26 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:infoedomex/objects/inundaciones.dart';
+import 'package:infoedomex/objects/incendios.dart';
+import 'package:infoedomex/objects/sismos.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../desplayMunicipio.dart';
 
 String busqueda;
 
-class DesplayInundaciones extends StatefulWidget {
-  DesplayInundaciones(String s) {
+class DesplayIncendios extends StatefulWidget {
+  DesplayIncendios(String s) {
     busqueda = s;
   }
 
   @override
-  _DesplayInundaciones createState() => _DesplayInundaciones();
+  _DesplayIncendios createState() => _DesplayIncendios();
 }
 
-class _DesplayInundaciones extends State<DesplayInundaciones> {
+class _DesplayIncendios extends State<DesplayIncendios> {
   //Inicializacion para busquedas
-  List<Inundaciones> postList = [];
+  List<Incendios> postList = [];
   @override
   void initState() {
     super.initState();
@@ -33,18 +34,16 @@ class _DesplayInundaciones extends State<DesplayInundaciones> {
       var data = snap.value;
       postList.clear();
       for (var individualKey in keys) {
-        Inundaciones inundaciones = Inundaciones(
+        Incendios inundaciones = Incendios(
           data[individualKey]['claveIGECEM'],
           data[individualKey]['municipio'],
-          data[individualKey]['porcentajeSuceptabilidad'],
-          data[individualKey]['superficie'],
-          data[individualKey]['superficieSuceptible'],
+          data[individualKey]['incendios'],
         );
         postList.add(inundaciones);
       }
 
       setState(() {
-        Alert(context: context, 
+         Alert(context: context, 
                     title: "Mostrando: " + busqueda,
                     desc: "Se encontraron " + postList.length.toString() + " Municipios",
                     buttons: []
@@ -67,9 +66,7 @@ class _DesplayInundaciones extends State<DesplayInundaciones> {
               return postsUI(
                 postList[index].claveIGECEM,
                 postList[index].municipio,
-                postList[index].porcentajeSuceptabilidad,
-                postList[index].superficie,
-                postList[index].superficieSuseptible,
+                postList[index].incendios
               );
           })
       ),
@@ -101,7 +98,7 @@ class _DesplayInundaciones extends State<DesplayInundaciones> {
     );
   }
 
-  Widget postsUI(String claveIGECEM, String municipio, String porcentajeSuceptibilidad, String superficie, String superficieSuseptible){
+  Widget postsUI(String claveIGECEM, String municipio, String incendios){
     
     return Card(
       elevation: 10,
@@ -114,14 +111,11 @@ class _DesplayInundaciones extends State<DesplayInundaciones> {
             SizedBox(height:10),
             Text(municipio, style: Theme.of(context).textTheme.headline4),
             SizedBox(height:10),
-            Text('Superficie Suceptible a '+ busqueda +'\n'+superficieSuseptible, style: Theme.of(context).textTheme.subtitle1),
-            SizedBox(height:10),
-            Text('Porcentaje Total suceptible: '+porcentajeSuceptibilidad.toString(), style: Theme.of(context).textTheme.subtitle1),
+            Text('Numero de '+ busqueda +'\n'+incendios, style: Theme.of(context).textTheme.subtitle1),
             SizedBox(height:10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                  Text("S. Total:" + superficie,style: Theme.of(context).textTheme.subtitle2, textAlign: TextAlign.center,),
                   Text(claveIGECEM.replaceFirst("clave", "Clave IGECEM: "),style: Theme.of(context).textTheme.subtitle2, textAlign: TextAlign.center,),
                   IconButton(onPressed:(){
                   String IGECEM = claveIGECEM.replaceFirst("clave", "");

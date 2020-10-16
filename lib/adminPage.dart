@@ -12,7 +12,7 @@ class AdminPage extends StatefulWidget {
 }
 
 class _AdminPageState extends State<AdminPage> {
-  int _currentIndex = 4;
+  int _currentIndex = 0;
 
   final _desplay = [
     ShowMunicipios(),

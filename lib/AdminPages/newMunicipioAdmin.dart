@@ -13,7 +13,7 @@ class NewMunicipioAdmin extends StatefulWidget {
   class _NewMunicipioAdmin  extends State<NewMunicipioAdmin>{
   @override
   Widget build(BuildContext context) {
-    String newclave, newmunicipio, newcabecera, newsignificado, newsuperficie, newaltitud, newlatitud , newlongitud, newclima, newelevaciones, newcuerposAgua;
+    String newclave, newmunicipio, newcabecera, newsignificado, newsuperficie, newaltitud, newlatitud , newlongitud, newclima, newelevaciones, newcuerposAgua, newIndustrailizados;
 
     return Scaffold(
       appBar: AppBar(title:Text('Añadiendo Municipio'), centerTitle: true,),
@@ -159,7 +159,7 @@ class NewMunicipioAdmin extends StatefulWidget {
                       "latitud":newlatitud,
                       "longitud":newlongitud,
                       "masExtensos":"0",
-                      "masIndustralizados":"0",
+                      "masIndustrializados":"0",
                       "masPoblados":"0",
                       "menosExtensos":"0",
                       "municipio":newmunicipio,
