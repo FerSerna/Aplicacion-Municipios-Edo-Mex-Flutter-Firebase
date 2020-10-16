@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:infoedomex/AdminPages/newMunicipioAdmin.dart';
+import 'package:infoedomex/AdminPages/searchMunicipioAdmin.dart';
+import 'package:infoedomex/AdminPages/searchRiesgoAdmin.dart';
+import 'package:infoedomex/ConsultorPages/showMunicipios.dart';
 
 import 'endsesion.dart';
 
@@ -8,10 +12,13 @@ class AdminPage extends StatefulWidget {
 }
 
 class _AdminPageState extends State<AdminPage> {
-  int _currentIndex = 0;
+  int _currentIndex = 2;
 
   final _desplay = [
-    Text("Pagina de Administrador"),
+    ShowMunicipios(),
+    SearchMunicipiosAdmin(),
+    NewMunicipioAdmin(),
+    SearchRiesgosAdmin(),
     CloseSesion(),
   ];
 
@@ -26,10 +33,22 @@ class _AdminPageState extends State<AdminPage> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              title: Text('Admin LandPage'),
+              title: Text('Todos'),
               backgroundColor: Colors.amber),
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.edit),
+              title: Text('Editar'),
+              backgroundColor: Colors.amber),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add),
+              title: Text('Nuevo'),
+              backgroundColor: Colors.amber),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.battery_alert),
+              title: Text('Riesgos'),
+              backgroundColor: Colors.amber),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.close),
               title: Text('Cerrar Sesión'),
               backgroundColor: Colors.amber),
         ],

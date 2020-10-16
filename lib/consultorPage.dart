@@ -11,7 +11,7 @@ class ConsultorPage extends StatefulWidget {
 }
 
 class _ConsultorPageState extends State<ConsultorPage> {
-  int _currentIndex = 2;
+  int _currentIndex = 0;
 
   final _desplay = [
     ShowMunicipios(),

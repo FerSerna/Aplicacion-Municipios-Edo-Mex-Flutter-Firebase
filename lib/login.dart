@@ -45,7 +45,7 @@ class _LoginPageState extends State<Login> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image(image: AssetImage('assets/edomex.png')),
-            SizedBox(height: 80),
+            SizedBox(height: 30),
             Text("Inicia Sesión", style: Theme.of(context).textTheme.headline5),
             SizedBox(height: 30),
             TextField(
