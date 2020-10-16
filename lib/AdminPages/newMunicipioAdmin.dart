@@ -139,7 +139,7 @@ class NewMunicipioAdmin extends StatefulWidget {
               SizedBox(height:15), 
               
               RaisedButton(
-                child:Text('Añadir Estado'),
+                child:Text('Añadir Municipio'),
                 onPressed: (){
                     Alert(context: context, 
                     title: "Municipio añadido correctamente",

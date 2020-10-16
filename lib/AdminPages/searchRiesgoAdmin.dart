@@ -11,7 +11,7 @@ class SearchRiesgosAdmin extends StatefulWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AppBar(title: Text("Buscar riesgos Admin"),),
+      body: Center(child: Image(image: AssetImage('assets/construccion.png'))),
       
     );
   }

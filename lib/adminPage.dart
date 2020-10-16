@@ -12,7 +12,7 @@ class AdminPage extends StatefulWidget {
 }
 
 class _AdminPageState extends State<AdminPage> {
-  int _currentIndex = 2;
+  int _currentIndex = 4;
 
   final _desplay = [
     ShowMunicipios(),
@@ -49,7 +49,7 @@ class _AdminPageState extends State<AdminPage> {
               backgroundColor: Colors.amber),
           BottomNavigationBarItem(
               icon: Icon(Icons.close),
-              title: Text('Cerrar Sesión'),
+              title: Text('Salir'),
               backgroundColor: Colors.amber),
         ],
         onTap: (index) {

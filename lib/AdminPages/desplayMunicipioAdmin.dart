@@ -391,7 +391,7 @@ class _EditMunicipioState extends State<EditMunicipio> {
               SizedBox(height:15), 
               
               RaisedButton(
-                child:Text('Editar Estado'),
+                child:Text('Editar Municipio'),
                 onPressed: uploadStatusImage
                 ),
                //Define un espacio
@@ -425,7 +425,7 @@ class _EditMunicipioState extends State<EditMunicipio> {
               backgroundColor: Colors.orange),
           BottomNavigationBarItem(
               icon: Icon(Icons.close),
-              title: Text('Cerrar Sesion'),
+              title: Text('Salir'),
               backgroundColor: Colors.orange),
         ],
       ),
@@ -439,7 +439,7 @@ class _EditMunicipioState extends State<EditMunicipio> {
 
     //Regresar a la pantalla de feed
     Alert(context: context, 
-      title: "Publicación editada correctamente",
+      title: "Municipio editado correctamente",
       desc: "Refresca la pantalla para ver los cambios",
       buttons: []
     ).show();
