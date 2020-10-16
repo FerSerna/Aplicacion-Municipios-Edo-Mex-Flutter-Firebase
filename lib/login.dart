@@ -7,16 +7,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginPageState extends State<Login> {
-  Future<void> _createUserAnonymous() async {
-    try {
-      // ignore: unused_local_variable
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInAnonymously();
-    } on FirebaseAuthException catch (e) {
-      print('error: $e');
-    }
-  }
-
+  
   Future<void> _createUserEmail() async {
     try {
       // ignore: unused_local_variable

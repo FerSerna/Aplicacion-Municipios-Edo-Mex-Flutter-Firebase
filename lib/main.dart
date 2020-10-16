@@ -49,7 +49,7 @@ class LandingPage extends StatelessWidget {
                   //usuario NO logeado
                   return MaterialApp(
                     title: "Blog ...",
-                    theme: ThemeData(primarySwatch: Colors.amber),
+                    theme: ThemeData(primaryColor: Colors.orange[200]),
                     debugShowCheckedModeBanner: false,
                     home: Login(),
                   );
@@ -59,7 +59,7 @@ class LandingPage extends StatelessWidget {
                     if (user.email.toString() == "admin@gmail.com") {
                       return MaterialApp(
                         title: "Blog ...",
-                        theme: ThemeData(primarySwatch: Colors.amber[100]),
+                        theme: ThemeData(primaryColor: Colors.orange[400]),
                         debugShowCheckedModeBanner: false,
                         home: AdminPage(),
                       );
@@ -67,7 +67,7 @@ class LandingPage extends StatelessWidget {
                     if (user.email.toString() != "admin@gmail.com") {
                       return MaterialApp(
                         title: "Blog ...",
-                        theme: ThemeData(primarySwatch: Colors.amber[100]),
+                        theme: ThemeData(primaryColor: Colors.orange[400]),
                         debugShowCheckedModeBanner: false,
                         home: ConsultorPage(),
                       );
