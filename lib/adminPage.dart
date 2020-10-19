@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:infoedomex/AdminPages/newMunicipioAdmin.dart';
-import 'package:infoedomex/AdminPages/searchMunicipioAdmin.dart';
-import 'package:infoedomex/AdminPages/searchRiesgoAdmin.dart';
+import 'package:infoedomex/AdminActions/createMunicipios.dart';
+import 'package:infoedomex/AdminActions/listMunicipios.dart';
+import 'package:infoedomex/AdminActions/searchMunicipios.dart';
+import 'package:infoedomex/AdminActions/searchRiesgos.dart';
 import 'package:infoedomex/ConsultorPages/showMunicipios.dart';
 
 import 'endsesion.dart';
@@ -15,10 +16,10 @@ class _AdminPageState extends State<AdminPage> {
   int _currentIndex = 0;
 
   final _desplay = [
-    ShowMunicipios(),
-    SearchMunicipiosAdmin(),
-    NewMunicipioAdmin(),
-    SearchRiesgosAdmin(),
+    ListMunicipios(),
+    SearchMunicipios(),
+    CreateMunicipio(),
+    SearchRiesgos(),
     CloseSesion(),
   ];
 

@@ -116,7 +116,6 @@ class _SearchRiesgos extends State<SearchRiesgos> {
                         print("Buscar por Derrumbes");
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => DesplayInundaciones("Derrumbes"),));
-                        
                       },
                     ),
                   ),
