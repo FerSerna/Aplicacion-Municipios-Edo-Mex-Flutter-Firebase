@@ -49,7 +49,7 @@ class LandingPage extends StatelessWidget {
                 if (user == null) {
                   //usuario NO logeado
                   return MaterialApp(
-                    title: "Blog ...",
+                    title: "App EDOMEX ...",
                     theme: ThemeData(primaryColor: Colors.orange[200]),
                     debugShowCheckedModeBanner: false,
                     home: Login(),
