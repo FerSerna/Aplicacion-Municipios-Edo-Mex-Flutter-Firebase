@@ -24,7 +24,7 @@ class _DesplayZonaSismica extends State<DesplayZonaSismica> {
     super.initState();
 
     DatabaseReference postsRef =
-        FirebaseDatabase.instance.reference().child("Sismos");
+        FirebaseDatabase.instance.reference().child("ZonaSismica");
     postsRef.once().then((DataSnapshot snap) {
       var keys = snap.value.keys;
       var data = snap.value;
@@ -33,9 +33,9 @@ class _DesplayZonaSismica extends State<DesplayZonaSismica> {
         Sismos sismos = Sismos(
           data[individualKey]['claveIGECEM'],
           data[individualKey]['municipio'],
-          data[individualKey]['porcentaje'],
-          data[individualKey]['sismos'],
-          data[individualKey]['sismos'],
+          data[individualKey]['porcentajeSuceptabilidad'],
+          data[individualKey]['superficie'],
+          data[individualKey]['superficieSuceptible'],
         );
         postList.add(sismos);
       }
@@ -95,9 +95,7 @@ class _DesplayZonaSismica extends State<DesplayZonaSismica> {
               SizedBox(height: 10),
               Text(municipio, style: Theme.of(context).textTheme.headline4),
               SizedBox(height: 10),
-              Text(
-                  'Numero de sismos: \n' +
-                      superficieSuseptible,
+              Text('Numero de sismos: \n' + superficieSuseptible,
                   style: Theme.of(context).textTheme.subtitle1),
               SizedBox(height: 10),
               Text(
@@ -140,7 +138,8 @@ class _DesplayZonaSismica extends State<DesplayZonaSismica> {
                   ),
                   IconButton(
                       onPressed: () {
-                        String clave = claveIGECEM.replaceAll("clave", "id_zonasisc");
+                        String clave =
+                            claveIGECEM.replaceAll("clave", "id_zonasisc");
                         DatabaseReference modifyPost = FirebaseDatabase.instance
                             .reference()
                             .child("Sismos")

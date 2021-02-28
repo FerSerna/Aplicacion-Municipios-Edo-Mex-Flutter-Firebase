@@ -1,49 +1,49 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:infoedomex/AdminActions/desplayMunicipios.dart';
-import 'package:infoedomex/objectsAdmin/derrumbes.dart';
+import 'package:infoedomex/ConsultorPages/desplayMunicipio.dart';
+import 'package:infoedomex/objectsAdmin/sismos.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 String busqueda;
 
-class DesplayDerrumbes extends StatefulWidget {
-  DesplayDerrumbes(String s) {
+class DesplayZonaSismica extends StatefulWidget {
+  DesplayZonaSismica(String s) {
     busqueda = s;
   }
 
   @override
-  _DesplayDerrumbes createState() => _DesplayDerrumbes();
+  _DesplayZonaSismica createState() => _DesplayZonaSismica();
 }
 
-class _DesplayDerrumbes extends State<DesplayDerrumbes> {
+class _DesplayZonaSismica extends State<DesplayZonaSismica> {
   //Inicializacion para busquedas
-  List<Derrumbes> postList = [];
+  List<Sismos> postList = [];
   @override
   void initState() {
     super.initState();
 
     DatabaseReference postsRef =
-        FirebaseDatabase.instance.reference().child("Derrumbes");
+        FirebaseDatabase.instance.reference().child("ZonaSismica");
     postsRef.once().then((DataSnapshot snap) {
       var keys = snap.value.keys;
       var data = snap.value;
       postList.clear();
       for (var individualKey in keys) {
-        Derrumbes derrumbes = Derrumbes(
+        Sismos sismos = Sismos(
           data[individualKey]['claveIGECEM'],
           data[individualKey]['municipio'],
           data[individualKey]['porcentajeSuceptabilidad'],
           data[individualKey]['superficie'],
           data[individualKey]['superficieSuceptible'],
         );
-        postList.add(derrumbes);
+        postList.add(sismos);
       }
 
       setState(() {
         Alert(
             context: context,
-            title: "Municipios con Derrumbes",
+            title: "Municipios con Zona Sismica latente",
             desc: postList.length.toString() + ' registrados',
             buttons: []).show();
       });
@@ -54,13 +54,13 @@ class _DesplayDerrumbes extends State<DesplayDerrumbes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Con Zona Derrumbes'),
+        title: Text('Con Zona Sismica latente'),
         centerTitle: true,
       ),
       body: Container(
           //Aqui se deben mostrar las publicaciones
           child: postList.length == 0
-              ? Text("No hay Derrumbes")
+              ? Text("No hay Ssismos")
               : ListView.builder(
                   itemCount: postList.length,
                   itemBuilder: (_, index) {
@@ -95,7 +95,7 @@ class _DesplayDerrumbes extends State<DesplayDerrumbes> {
               SizedBox(height: 10),
               Text(municipio, style: Theme.of(context).textTheme.headline4),
               SizedBox(height: 10),
-              Text('Superficie suceptible: \n' + superficieSuseptible,
+              Text('Numero de sismos: \n' + superficieSuseptible,
                   style: Theme.of(context).textTheme.subtitle1),
               SizedBox(height: 10),
               Text(
@@ -136,24 +136,6 @@ class _DesplayDerrumbes extends State<DesplayDerrumbes> {
                       color: Colors.orange,
                     ),
                   ),
-                  IconButton(
-                      onPressed: () {
-                        String clave =
-                            claveIGECEM.replaceAll("clave", "id_zonasisc");
-                        DatabaseReference modifyPost = FirebaseDatabase.instance
-                            .reference()
-                            .child("Sismos")
-                            .child(clave);
-                        modifyPost.remove();
-                        Alert(
-                            context: context,
-                            title: "Ha sido la zona sísmica en $municipio",
-                            buttons: []).show();
-                      },
-                      icon: Icon(
-                        Icons.delete,
-                        color: Colors.red,
-                      )),
                 ],
               ),
             ],
@@ -339,6 +321,6 @@ class _EditSismosState extends State<EditSismos> {
       "superficie": _nIsuperficie,
       "superficieSuceptible": _nIsuperficieSuceptibilidad,
     };
-    ref.child("Derrumbes").child('clave' + _nIclaveIGECEM).set(data);
+    ref.child("ZonaSismica").child('clave' + _nIclaveIGECEM).set(data);
   }
 }

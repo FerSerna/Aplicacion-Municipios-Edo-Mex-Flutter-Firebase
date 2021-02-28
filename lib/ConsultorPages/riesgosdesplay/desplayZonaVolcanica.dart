@@ -1,49 +1,49 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:infoedomex/AdminActions/desplayMunicipios.dart';
-import 'package:infoedomex/objectsAdmin/derrumbes.dart';
+import 'package:infoedomex/objectsAdmin/volcanes.dart';
+import 'package:infoedomex/ConsultorPages/desplayMunicipio.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 String busqueda;
 
-class DesplayDerrumbes extends StatefulWidget {
-  DesplayDerrumbes(String s) {
+class DesplayZonaVolcanica extends StatefulWidget {
+  DesplayZonaVolcanica(String s) {
     busqueda = s;
   }
 
   @override
-  _DesplayDerrumbes createState() => _DesplayDerrumbes();
+  _DesplayZonaVolcanica createState() => _DesplayZonaVolcanica();
 }
 
-class _DesplayDerrumbes extends State<DesplayDerrumbes> {
+class _DesplayZonaVolcanica extends State<DesplayZonaVolcanica> {
   //Inicializacion para busquedas
-  List<Derrumbes> postList = [];
+  List<Volcanes> postList = [];
   @override
   void initState() {
     super.initState();
 
     DatabaseReference postsRef =
-        FirebaseDatabase.instance.reference().child("Derrumbes");
+        FirebaseDatabase.instance.reference().child("ZonaVolcanica");
     postsRef.once().then((DataSnapshot snap) {
       var keys = snap.value.keys;
       var data = snap.value;
       postList.clear();
       for (var individualKey in keys) {
-        Derrumbes derrumbes = Derrumbes(
+        Volcanes volcanes = Volcanes(
           data[individualKey]['claveIGECEM'],
           data[individualKey]['municipio'],
           data[individualKey]['porcentajeSuceptabilidad'],
           data[individualKey]['superficie'],
           data[individualKey]['superficieSuceptible'],
         );
-        postList.add(derrumbes);
+        postList.add(volcanes);
       }
 
       setState(() {
         Alert(
             context: context,
-            title: "Municipios con Derrumbes",
+            title: "Municipios con Zona Volcánica latente",
             desc: postList.length.toString() + ' registrados',
             buttons: []).show();
       });
@@ -54,13 +54,13 @@ class _DesplayDerrumbes extends State<DesplayDerrumbes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Con Zona Derrumbes'),
+        title: Text('Con Zona Volcánica latente'),
         centerTitle: true,
       ),
       body: Container(
           //Aqui se deben mostrar las publicaciones
           child: postList.length == 0
-              ? Text("No hay Derrumbes")
+              ? Text("No hay Zona volcánica latente")
               : ListView.builder(
                   itemCount: postList.length,
                   itemBuilder: (_, index) {
@@ -136,24 +136,6 @@ class _DesplayDerrumbes extends State<DesplayDerrumbes> {
                       color: Colors.orange,
                     ),
                   ),
-                  IconButton(
-                      onPressed: () {
-                        String clave =
-                            claveIGECEM.replaceAll("clave", "id_zonasisc");
-                        DatabaseReference modifyPost = FirebaseDatabase.instance
-                            .reference()
-                            .child("Sismos")
-                            .child(clave);
-                        modifyPost.remove();
-                        Alert(
-                            context: context,
-                            title: "Ha sido la zona sísmica en $municipio",
-                            buttons: []).show();
-                      },
-                      icon: Icon(
-                        Icons.delete,
-                        color: Colors.red,
-                      )),
                 ],
               ),
             ],
@@ -218,7 +200,7 @@ class _EditSismosState extends State<EditSismos> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Editando información sobre Zona Sísmica'),
+        title: Text('Editando información sobre Zona Volcánica'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -296,7 +278,7 @@ class _EditSismosState extends State<EditSismos> {
                 SizedBox(height: 15),
 
                 RaisedButton(
-                  child: Text('Actualizar información de Zona Sísmica'),
+                  child: Text('Actualizar información de Zona Volcánica'),
                   color: Colors.orange,
                   onPressed: uploadSismo,
                 ),
@@ -339,6 +321,6 @@ class _EditSismosState extends State<EditSismos> {
       "superficie": _nIsuperficie,
       "superficieSuceptible": _nIsuperficieSuceptibilidad,
     };
-    ref.child("Derrumbes").child('clave' + _nIclaveIGECEM).set(data);
+    ref.child("ZonaVolcanica").child('clave' + _nIclaveIGECEM).set(data);
   }
 }

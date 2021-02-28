@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: LandingPage(),
     );
   }
@@ -54,7 +55,8 @@ class LandingPage extends StatelessWidget {
                     home: Login(),
                   );
                 } else {
-                  //usuario logeado
+                  //administrador logeado
+                  //Contraseña: 123456
                   if (!user.isAnonymous) {
                     if (user.email.toString() == "admin@gmail.com") {
                       return MaterialApp(
@@ -64,7 +66,9 @@ class LandingPage extends StatelessWidget {
                         home: AdminPage(),
                       );
                     }
-                    if (user.email.toString() != "admin@gmail.com") {
+                    //consultor logeado
+                    //Contraseña: 123456
+                    if (user.email.toString() == "consultor@gmail.com") {
                       return MaterialApp(
                         title: "Blog ...",
                         theme: ThemeData(primaryColor: Colors.orange[400]),

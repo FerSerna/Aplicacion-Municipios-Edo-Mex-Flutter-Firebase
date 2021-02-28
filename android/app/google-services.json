@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "623688795864",
-    "firebase_url": "https://info-edomex.firebaseio.com",
-    "project_id": "info-edomex",
-    "storage_bucket": "info-edomex.appspot.com"
+    "project_number": "16447997475",
+    "firebase_url": "https://appsecurity-b836f.firebaseio.com",
+    "project_id": "appsecurity-b836f",
+    "storage_bucket": "appsecurity-b836f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:623688795864:android:c3243e9aaf58f5eeb439ad",
+        "mobilesdk_app_id": "1:16447997475:android:05d4eb975c3bdc2de65396",
         "android_client_info": {
-          "package_name": "tec.aldoguillermo.infoedomex"
+          "package_name": "com.example.flutter_blog_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "623688795864-i1gmustia0gjffth7ad9l27v1sakvi9h.apps.googleusercontent.com",
+          "client_id": "16447997475-tnhu7dpsq3rp9llc8aahsej5e1tg9g72.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCy2QnD5qxegvLqIN4QHShVgtdTLKstJ08"
+          "current_key": "AIzaSyDDg-6lLJbh-TfA7QkSsN5s6PTDeHJiAak"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "623688795864-i1gmustia0gjffth7ad9l27v1sakvi9h.apps.googleusercontent.com",
+              "client_id": "16447997475-tnhu7dpsq3rp9llc8aahsej5e1tg9g72.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -7,7 +8,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginPageState extends State<Login> {
-  
   Future<void> _createUserEmail() async {
     try {
       // ignore: unused_local_variable
@@ -38,8 +38,8 @@ class _LoginPageState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Informacion EDOMEX')),
-      body: Padding(
+      appBar: AppBar(title: Text('EDOMEX')),
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(22.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -64,17 +64,14 @@ class _LoginPageState extends State<Login> {
                 onChanged: (value) {
                   _password = value;
                 },
+                obscureText: true,
                 decoration:
                     InputDecoration(hintText: "Introduce tu Contraseña...")),
             SizedBox(height: 50),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               MaterialButton(
-                onPressed: _createUserEmail,
-                child: Text('Crear una cuenta'),
-              ),
-              MaterialButton(
                 onPressed: _loginUserEmail,
-                child: Text('Inicia Sesión'),
+                child: Text('Acceder'),
               ),
             ]),
           ],

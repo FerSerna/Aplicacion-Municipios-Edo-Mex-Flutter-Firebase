@@ -1,50 +1,52 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:infoedomex/objectsAdmin/incendios.dart';
+import 'package:infoedomex/objectsAdmin/deslaves.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-import '../desplayMunicipios.dart';
+import '../desplayMunicipio.dart';
 
 String busqueda;
 
-class DesplayIncendios extends StatefulWidget {
-  DesplayIncendios(String s) {
+class DesplayDeslaves extends StatefulWidget {
+  DesplayDeslaves(String s) {
     busqueda = s;
   }
 
   @override
-  _DesplayIncendios createState() => _DesplayIncendios();
+  _DesplayDeslaves createState() => _DesplayDeslaves();
 }
 
-class _DesplayIncendios extends State<DesplayIncendios> {
+class _DesplayDeslaves extends State<DesplayDeslaves> {
   //Inicializacion para busquedas
-  List<Incendios> postList = [];
+  List<Deslaves> postList = [];
   @override
   void initState() {
     super.initState();
 
     DatabaseReference postsRef =
-        FirebaseDatabase.instance.reference().child("Incendios");
+        FirebaseDatabase.instance.reference().child("Deslaves");
     postsRef.once().then((DataSnapshot snap) {
       var keys = snap.value.keys;
       var data = snap.value;
       postList.clear();
       for (var individualKey in keys) {
-        Incendios incendios = Incendios(
+        Deslaves deslaves = Deslaves(
           data[individualKey]['claveIGECEM'],
-          data[individualKey]['incendios'].toString(),
           data[individualKey]['municipio'],
+          data[individualKey]['porcentajeSuceptabilidad'],
+          data[individualKey]['superficie'],
+          data[individualKey]['superficieSuceptible'],
         );
-        postList.add(incendios);
+        postList.add(deslaves);
       }
 
       setState(() {
         Alert(
             context: context,
-            title: "Municipios con Incendios ",
+            title: "Municipios con Deslaves",
             desc: postList.length.toString() + ' registrados',
-            buttons: []).show();
+            buttons: []).show(); //tamaño de lista de posts
       });
     });
   }
@@ -53,26 +55,33 @@ class _DesplayIncendios extends State<DesplayIncendios> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Con Incendios registrados'),
+        title: Text('Con peligro de deslave'),
         centerTitle: true,
       ),
       body: Container(
           //Aqui se deben mostrar las publicaciones
           child: postList.length == 0
-              ? Text("No hay incendios")
+              ? Text("No hay deslaves")
               : ListView.builder(
                   itemCount: postList.length,
                   itemBuilder: (_, index) {
                     return postsUI(
                       postList[index].claveIGECEM,
-                      postList[index].incendios,
                       postList[index].municipio,
+                      postList[index].porcentajeSuceptabilidad,
+                      postList[index].superficie,
+                      postList[index].superficieSuseptible,
                     );
                   })),
     );
   }
 
-  Widget postsUI(String claveIGECEM, String municipio, String incendios) {
+  Widget postsUI(
+      String claveIGECEM,
+      String municipio,
+      String porcentajeSuceptibilidad,
+      String superficie,
+      String superficieSuseptible) {
     return Card(
         elevation: 10,
         margin: EdgeInsets.all(10),
@@ -87,12 +96,23 @@ class _DesplayIncendios extends State<DesplayIncendios> {
               SizedBox(height: 10),
               Text(municipio, style: Theme.of(context).textTheme.headline4),
               SizedBox(height: 10),
-              Text('Total de incendios' + incendios.toString(),
+              Text(
+                  'Superficie Suceptible a Deslaves: \n' + superficieSuseptible,
+                  style: Theme.of(context).textTheme.subtitle1),
+              SizedBox(height: 10),
+              Text(
+                  'Porcentaje Total suceptible: ' +
+                      porcentajeSuceptibilidad.toString(),
                   style: Theme.of(context).textTheme.subtitle1),
               SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Text(
+                    "S. Total:" + superficie,
+                    style: Theme.of(context).textTheme.subtitle2,
+                    textAlign: TextAlign.center,
+                  ),
                   Text(
                     claveIGECEM.replaceFirst("clave", "Clave IGECEM: "),
                     style: Theme.of(context).textTheme.subtitle2,
@@ -100,7 +120,6 @@ class _DesplayIncendios extends State<DesplayIncendios> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -108,7 +127,7 @@ class _DesplayIncendios extends State<DesplayIncendios> {
                     onPressed: () {
                       // ignore: non_constant_identifier_names
                       String IGECEM = claveIGECEM.replaceFirst("clave", "");
-                      print('Municipio');
+                      print('Info de Municipio');
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => DesplayMunicipios("1", IGECEM),
                       ));
@@ -118,44 +137,6 @@ class _DesplayIncendios extends State<DesplayIncendios> {
                       color: Colors.orange,
                     ),
                   ),
-                  /*
-                  IconButton(
-                    onPressed: () {
-                      
-                      print('Se modificará el municipio :' + claveIGECEM);
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => EditPublication(
-                          municipio,
-                          //incendios,
-                          claveIGECEM,
-                        ),
-                      ));
-                    },
-                    icon: Icon(
-                      Icons.edit,
-                      color: Colors.green,
-                    ),
-                  ),
-                  */
-                  IconButton(
-                      onPressed: () {
-                        String clave =
-                            claveIGECEM.replaceAll("clave", "id_incendio");
-                        DatabaseReference modifyPost = FirebaseDatabase.instance
-                            .reference()
-                            .child("Incendios")
-                            .child(clave);
-                        modifyPost.remove();
-                        Alert(
-                            context: context,
-                            title:
-                                "Ha sido eliminados los incendios en $municipio",
-                            buttons: []).show();
-                      },
-                      icon: Icon(
-                        Icons.delete,
-                        color: Colors.red,
-                      )),
                 ],
               ),
             ],

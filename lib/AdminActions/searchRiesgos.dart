@@ -7,7 +7,6 @@ import 'package:infoedomex/AdminActions/riesgosList/desplayInundaciones.dart';
 import 'package:infoedomex/AdminActions/riesgosList/desplayZonaSismica.dart';
 import 'package:infoedomex/AdminActions/riesgosList/desplayZonaVolcanica.dart';
 
-
 class SearchRiesgos extends StatefulWidget {
   @override
   _SearchRiesgos createState() => _SearchRiesgos();
@@ -89,7 +88,7 @@ class _SearchRiesgos extends State<SearchRiesgos> {
                         print("Buscar por Zonas Sismica");
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) =>
-                              DesplayZonaSismica("Zona Sismica"),
+                              DesplayZonaSismica("ZonaSismica"),
                         ));
                       },
                     ),
@@ -105,7 +104,7 @@ class _SearchRiesgos extends State<SearchRiesgos> {
                         print("Buscar por Zonas Volcanicas");
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) =>
-                              DesplayZonaVolcanica("Zona Volcanica"),
+                              DesplayZonaVolcanica("ZonaVolcanica"),
                         ));
                       },
                     ),

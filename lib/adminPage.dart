@@ -3,7 +3,6 @@ import 'package:infoedomex/AdminActions/createMunicipios.dart';
 import 'package:infoedomex/AdminActions/listMunicipios.dart';
 import 'package:infoedomex/AdminActions/searchMunicipios.dart';
 import 'package:infoedomex/AdminActions/searchRiesgos.dart';
-import 'package:infoedomex/ConsultorPages/showMunicipios.dart';
 
 import 'endsesion.dart';
 

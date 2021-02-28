@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:infoedomex/AdminActions/desplayMunicipios.dart';
 import 'package:infoedomex/objectsAdmin/volcanes.dart';
+import 'package:infoedomex/objectsAdmin/volcanes.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 String busqueda;
@@ -24,7 +25,7 @@ class _DesplayZonaVolcanica extends State<DesplayZonaVolcanica> {
     super.initState();
 
     DatabaseReference postsRef =
-        FirebaseDatabase.instance.reference().child("Zona Volcanica");
+        FirebaseDatabase.instance.reference().child("ZonaVolcanica");
     postsRef.once().then((DataSnapshot snap) {
       var keys = snap.value.keys;
       var data = snap.value;
@@ -43,7 +44,7 @@ class _DesplayZonaVolcanica extends State<DesplayZonaVolcanica> {
       setState(() {
         Alert(
             context: context,
-            title: "Municipios con Zona Volcanica latente",
+            title: "Municipios con Zona Volcánica latente",
             desc: postList.length.toString() + ' registrados',
             buttons: []).show();
       });
@@ -60,7 +61,7 @@ class _DesplayZonaVolcanica extends State<DesplayZonaVolcanica> {
       body: Container(
           //Aqui se deben mostrar las publicaciones
           child: postList.length == 0
-              ? Text("No hay ZOna volcánica")
+              ? Text("No hay Zona volcánica latente")
               : ListView.builder(
                   itemCount: postList.length,
                   itemBuilder: (_, index) {
@@ -95,7 +96,7 @@ class _DesplayZonaVolcanica extends State<DesplayZonaVolcanica> {
               SizedBox(height: 10),
               Text(municipio, style: Theme.of(context).textTheme.headline4),
               SizedBox(height: 10),
-              Text('Superficie Suceptible : \n' + superficieSuseptible,
+              Text('Superficie suceptible: \n' + superficieSuseptible,
                   style: Theme.of(context).textTheme.subtitle1),
               SizedBox(height: 10),
               Text(
@@ -138,15 +139,16 @@ class _DesplayZonaVolcanica extends State<DesplayZonaVolcanica> {
                   ),
                   IconButton(
                       onPressed: () {
-                        String clave = claveIGECEM.replaceAll("clave", "id_deslv");
+                        String clave =
+                            claveIGECEM.replaceAll("clave", "id_zonasisc");
                         DatabaseReference modifyPost = FirebaseDatabase.instance
                             .reference()
-                            .child("Zona Volcanica")
+                            .child("Sismos")
                             .child(clave);
                         modifyPost.remove();
                         Alert(
                             context: context,
-                            title: "Ha sido la zona volcánica en $municipio",
+                            title: "Ha sido la zona sísmica en $municipio",
                             buttons: []).show();
                       },
                       icon: Icon(
@@ -162,14 +164,14 @@ class _DesplayZonaVolcanica extends State<DesplayZonaVolcanica> {
 }
 
 // ignore: must_be_immutable
-class EditVolcanes extends StatefulWidget {
+class EditSismos extends StatefulWidget {
   String _eIclaveIGECEM,
       _eImunicipio,
       _eIporcentajeSuceptabilidad,
       _eIsuperficie,
       _eIsuperficieSuseptible;
 
-  EditVolcanes(
+  EditSismos(
       String claveIGECEM,
       String municipio,
       String porcentajeSuceptabilidad,
@@ -183,7 +185,7 @@ class EditVolcanes extends StatefulWidget {
   }
 
   @override
-  _EditVolcanesState createState() => _EditVolcanesState(
+  _EditSismosState createState() => _EditSismosState(
       _eIclaveIGECEM,
       _eImunicipio,
       _eIporcentajeSuceptabilidad,
@@ -191,7 +193,7 @@ class EditVolcanes extends StatefulWidget {
       _eIsuperficieSuseptible);
 }
 
-class _EditVolcanesState extends State<EditVolcanes> {
+class _EditSismosState extends State<EditSismos> {
   String _claveIGECEM,
       _municipio,
       _porcentajeSuceptibilidad,
@@ -206,7 +208,7 @@ class _EditVolcanesState extends State<EditVolcanes> {
 
   final formKey = GlobalKey<FormState>();
 
-  _EditVolcanesState(
+  _EditSismosState(
       String eIclaveIGECEM,
       String eImunicipio,
       String eIporcentajeSuceptabilidad,
@@ -295,9 +297,9 @@ class _EditVolcanesState extends State<EditVolcanes> {
                 SizedBox(height: 15),
 
                 RaisedButton(
-                  child: Text('Actualizar información de Zona VOlcánica'),
+                  child: Text('Actualizar información de Zona Volcánica'),
                   color: Colors.orange,
-                  onPressed: uploadVOlcan,
+                  onPressed: uploadSismo,
                 ),
                 SizedBox(height: 15) //Define un espacio
               ],
@@ -309,9 +311,9 @@ class _EditVolcanesState extends State<EditVolcanes> {
     );
   }
 
-  void uploadVOlcan() async {
+  void uploadSismo() async {
     if (validateAndSave()) {
-      saveVolcan();
+      saveSismo();
       Alert(
           context: context,
           title: "Información modificada correctamente",
@@ -329,7 +331,7 @@ class _EditVolcanesState extends State<EditVolcanes> {
     }
   }
 
-  void saveVolcan() {
+  void saveSismo() {
     DatabaseReference ref = FirebaseDatabase.instance.reference();
     var data = {
       "claveIGECEM": 'clave' + _nIclaveIGECEM,
@@ -338,6 +340,6 @@ class _EditVolcanesState extends State<EditVolcanes> {
       "superficie": _nIsuperficie,
       "superficieSuceptible": _nIsuperficieSuceptibilidad,
     };
-    ref.child("ZonaVOlcanica").child('clave' + _nIclaveIGECEM).set(data);
+    ref.child("ZonaVolcanica").child('clave' + _nIclaveIGECEM).set(data);
   }
 }

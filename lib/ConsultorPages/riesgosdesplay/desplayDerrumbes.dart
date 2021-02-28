@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:infoedomex/AdminActions/desplayMunicipios.dart';
+import 'package:infoedomex/ConsultorPages/desplayMunicipio.dart';
 import 'package:infoedomex/objectsAdmin/derrumbes.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -136,24 +136,6 @@ class _DesplayDerrumbes extends State<DesplayDerrumbes> {
                       color: Colors.orange,
                     ),
                   ),
-                  IconButton(
-                      onPressed: () {
-                        String clave =
-                            claveIGECEM.replaceAll("clave", "id_zonasisc");
-                        DatabaseReference modifyPost = FirebaseDatabase.instance
-                            .reference()
-                            .child("Sismos")
-                            .child(clave);
-                        modifyPost.remove();
-                        Alert(
-                            context: context,
-                            title: "Ha sido la zona sísmica en $municipio",
-                            buttons: []).show();
-                      },
-                      icon: Icon(
-                        Icons.delete,
-                        color: Colors.red,
-                      )),
                 ],
               ),
             ],
